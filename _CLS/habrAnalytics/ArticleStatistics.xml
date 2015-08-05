@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25" zv="Cache for Windows (x86-32) 2015.1 (Build 429U)" ts="2015-08-05 15:17:00">
+<Class name="habrAnalytics.ArticleStatistics">
+<Super>%Persistent</Super>
+<TimeChanged>63767,66073.296527</TimeChanged>
+<TimeCreated>63767,56567.546951</TimeCreated>
+
+<Property name="dateOfImport">
+<Type>%Date</Type>
+<Required>1</Required>
+</Property>
+
+<Property name="rating">
+<Type>%Integer</Type>
+</Property>
+
+<Property name="votesPlus">
+<Type>%Integer</Type>
+<InitialExpression>0</InitialExpression>
+<Parameter name="MINVAL" value="0"/>
+</Property>
+
+<Property name="votesMinus">
+<Type>%Integer</Type>
+<InitialExpression>0</InitialExpression>
+<Parameter name="MINVAL" value="0"/>
+</Property>
+
+<Property name="votes">
+<Type>%Integer</Type>
+<InitialExpression>0</InitialExpression>
+<Parameter name="MINVAL" value="0"/>
+</Property>
+
+<Property name="comments">
+<Type>%Integer</Type>
+<InitialExpression>0</InitialExpression>
+<Parameter name="MINVAL" value="0"/>
+</Property>
+
+<Property name="favorites">
+<Type>%Integer</Type>
+<InitialExpression>0</InitialExpression>
+<Parameter name="MINVAL" value="0"/>
+</Property>
+
+<Property name="views">
+<Type>%Integer</Type>
+<InitialExpression>0</InitialExpression>
+<Parameter name="MINVAL" value="0"/>
+</Property>
+
+<Property name="article">
+<Type>habrAnalytics.ArticleGeneralInfo</Type>
+<Cardinality>one</Cardinality>
+<Inverse>statistics</Inverse>
+<Relationship>1</Relationship>
+</Property>
+
+<Index name="articleIndex">
+<Properties>article</Properties>
+</Index>
+
+<Index name="dateIndex">
+<IdKey>1</IdKey>
+<PrimaryKey>1</PrimaryKey>
+<Properties>article,dateOfImport</Properties>
+<Unique>1</Unique>
+</Index>
+
+<Method name="%OnNew">
+<Description><![CDATA[
+This callback method is invoked by the <METHOD>%New</METHOD> method to 
+provide notification that a new instance of an object is being created.
+
+<P>If this method returns an error then the object will not be created.
+<p>It is passed the arguments provided in the %New call.
+When customizing this method, override the arguments with whatever variables and types you expect to receive from %New().
+For example, if you're going to call %New, passing 2 arguments, %OnNew's signature could be:
+<p>Method %OnNew(dob as %Date = "", name as %Name = "") as %Status
+If instead of returning a %Status code this returns an oref and this oref is a subclass of the current
+class then this oref will be the one returned to the caller of %New method.]]></Description>
+<FormalSpec><![CDATA[&newParams:%List]]></FormalSpec>
+<Private>1</Private>
+<ReturnType>%Status</ReturnType>
+<ServerOnly>1</ServerOnly>
+<Implementation><![CDATA[
+	set habrId = +$list(newParams, 1)
+	set oldParams = ..getByHabrId(habrId)
+	
+	set ..dateOfImport = $p($h, ",")
+	set ..rating     = +$list(newParams, 8)  - $list(oldParams, 1)
+	set ..votesPlus  = +$list(newParams, 9)  - $list(oldParams, 2)
+	set ..votesMinus = +$list(newParams, 10) - $list(oldParams, 3)
+	set ..votes      = +$list(newParams, 11) - $list(oldParams, 4)
+	set ..comments   = +$list(newParams, 12) - $list(oldParams, 5)
+	set ..favorites  = +$list(newParams, 13) - $list(oldParams, 6)
+	set ..views      = +$list(newParams, 14) - $list(oldParams, 7)
+	Quit $$$OK
+]]></Implementation>
+</Method>
+
+<Method name="getByHabrId">
+<ClassMethod>1</ClassMethod>
+<FormalSpec>habrId:%Integer</FormalSpec>
+<ReturnType>%List</ReturnType>
+<Implementation><![CDATA[
+	&sql(declare EC cursor for
+	select SUM(rating), SUM(votesPlus), SUM(votesMinus), SUM(votes), SUM(comments), SUM(favorites), SUM(views)
+	from habrAnalytics.ArticleStatistics where article = :habrId)	
+	&sql(open EC)
+	&sql(fetch EC into rating, votesPlus, votesMinus, votes, comments, favorites, views)
+	set oldParams = $LISTBUILD(rating, votesPlus, votesMinus, votes, comments, favorites, views)
+	&sql(close EC)
+	return oldParams
+]]></Implementation>
+</Method>
+
+<Storage name="Default">
+<Type>%Library.CacheStorage</Type>
+<DataLocation>^habrAnalytics.ArticleStat15DBD</DataLocation>
+<DefaultData>ArticleStatisticsDefaultData</DefaultData>
+<IdLocation>^habrAnalytics.ArticleStat15DBD</IdLocation>
+<IndexLocation>^habrAnalytics.ArticleStat15DBI</IndexLocation>
+<StreamLocation>^habrAnalytics.ArticleStat15DBS</StreamLocation>
+<Data name="ArticleStatisticsDefaultData">
+<Value name="1">
+<Value>%%CLASSNAME</Value>
+</Value>
+<Value name="2">
+<Value>rating</Value>
+</Value>
+<Value name="3">
+<Value>votesPlus</Value>
+</Value>
+<Value name="4">
+<Value>votesMinus</Value>
+</Value>
+<Value name="5">
+<Value>votes</Value>
+</Value>
+<Value name="6">
+<Value>comments</Value>
+</Value>
+<Value name="7">
+<Value>favorites</Value>
+</Value>
+<Value name="8">
+<Value>views</Value>
+</Value>
+<Value name="9">
+<Value>article</Value>
+</Value>
+<Value name="10">
+<Value>dateOfImport</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+</Export>

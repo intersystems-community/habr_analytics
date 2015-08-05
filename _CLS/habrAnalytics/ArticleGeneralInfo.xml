@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25" zv="Cache for Windows (x86-32) 2015.1 (Build 429U)" ts="2015-08-05 15:16:43">
+<Class name="habrAnalytics.ArticleGeneralInfo">
+<Super>%Persistent</Super>
+<TimeChanged>63768,65233.875296</TimeChanged>
+<TimeCreated>63767,56485.000784</TimeCreated>
+
+<Property name="habrId">
+<Type>%Integer</Type>
+<Required>1</Required>
+</Property>
+
+<Property name="url">
+<Type>%String</Type>
+<Required>1</Required>
+<Parameter name="MAXLEN" value="60"/>
+<Parameter name="PATTERN" value="1&quot;http://habrahabr.ru/company/intersystems/blog/&quot;6.N1&quot;/&quot;"/>
+</Property>
+
+<Property name="name">
+<Type>%String</Type>
+<Required>1</Required>
+<Parameter name="MAXLEN"/>
+</Property>
+
+<Property name="author">
+<Type>%String</Type>
+<InitialExpression>"intersystems"</InitialExpression>
+</Property>
+
+<Property name="dateOfCreation">
+<Type>%Date</Type>
+</Property>
+
+<Property name="dateOfPublication">
+<Type>%Date</Type>
+</Property>
+
+<Property name="hubs">
+<Type>%List</Type>
+</Property>
+
+<Property name="rating">
+<Type>%Integer</Type>
+</Property>
+
+<Property name="votesPlus">
+<Type>%Integer</Type>
+<InitialExpression>0</InitialExpression>
+<Parameter name="MINVAL" value="0"/>
+</Property>
+
+<Property name="votesMinus">
+<Type>%Integer</Type>
+<InitialExpression>0</InitialExpression>
+<Parameter name="MINVAL" value="0"/>
+</Property>
+
+<Property name="votes">
+<Type>%Integer</Type>
+<InitialExpression>0</InitialExpression>
+<Parameter name="MINVAL" value="0"/>
+</Property>
+
+<Property name="comments">
+<Type>%Integer</Type>
+<InitialExpression>0</InitialExpression>
+<Parameter name="MINVAL" value="0"/>
+</Property>
+
+<Property name="favorites">
+<Type>%Integer</Type>
+<InitialExpression>0</InitialExpression>
+<Parameter name="MINVAL" value="0"/>
+</Property>
+
+<Property name="views">
+<Type>%Integer</Type>
+<InitialExpression>0</InitialExpression>
+<Parameter name="MINVAL" value="0"/>
+</Property>
+
+<Index name="id">
+<IdKey>1</IdKey>
+<PrimaryKey>1</PrimaryKey>
+<Properties>habrId</Properties>
+<Unique>1</Unique>
+</Index>
+
+<Property name="statistics">
+<Type>habrAnalytics.ArticleStatistics</Type>
+<Cardinality>many</Cardinality>
+<Inverse>article</Inverse>
+<Relationship>1</Relationship>
+</Property>
+
+<Method name="%OnNew">
+<Description><![CDATA[
+This callback method is invoked by the <METHOD>%New</METHOD> method to 
+provide notification that a new instance of an object is being created.
+
+<P>If this method returns an error then the object will not be created.
+<p>It is passed the arguments provided in the %New call.
+When customizing this method, override the arguments with whatever variables and types you expect to receive from %New().
+For example, if you're going to call %New, passing 2 arguments, %OnNew's signature could be:
+<p>Method %OnNew(dob as %Date = "", name as %Name = "") as %Status
+If instead of returning a %Status code this returns an oref and this oref is a subclass of the current
+class then this oref will be the one returned to the caller of %New method.]]></Description>
+<FormalSpec><![CDATA[&parameterList:%List]]></FormalSpec>
+<Private>1</Private>
+<ReturnType>%Status</ReturnType>
+<ServerOnly>1</ServerOnly>
+<Implementation><![CDATA[
+	set ..habrId = $list(parameterList, 1)
+	set ..url    = $list(parameterList, 2) 
+	set status = ..update(.parameterList)
+	Quit status
+]]></Implementation>
+</Method>
+
+<Method name="update">
+<FormalSpec><![CDATA[&parameterList:%List]]></FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	set ..name   = $list(parameterList, 3) 
+	set ..author = $list(parameterList, 4) 
+	
+	set ..hubs = $listfromstring($list(parameterList, 5), ", ") 
+	set ..dateOfCreation = $zdh($tr($p($list(parameterList, 6)," "),".","/"), 4) 
+	
+	set pub = $list(parameterList, 7)
+	if pub?1.AP=1 {
+		set ..dateOfPublication = ""
+	} else {
+		set ..dateOfPublication = $zdh($tr($p(pub," "),".","/"), 4)
+	}
+	
+	//set oldParams = $LISTBUILD(..rating, ..votesPlus, ..votesMinus, ..votes, ..comments, ..favorites, ..views)
+	
+	set ..rating     = +$list(parameterList, 8)
+	set ..votesPlus  = +$list(parameterList, 9)
+	set ..votesMinus = +$list(parameterList, 10)
+	set ..votes      = +$list(parameterList, 11)
+	set ..comments   = +$list(parameterList, 12)
+	set ..favorites  = +$list(parameterList, 13)
+	set ..views      = +$list(parameterList, 14)
+	
+	if (##class(habrAnalytics.ArticleStatistics).%ExistsId(..habrId_"||"_$p($h, ",")) = 0) {	
+		set status = ..statistics.Insert(##class(habrAnalytics.ArticleStatistics).%New(.parameterList))
+		Quit status
+	}
+	Quit $$$OK
+]]></Implementation>
+</Method>
+
+<Storage name="Default">
+<Type>%Library.CacheStorage</Type>
+<DataLocation>^habrAnalytics.ArticleGener599D</DataLocation>
+<DefaultData>ArticleGeneralInfoDefaultData</DefaultData>
+<IdLocation>^habrAnalytics.ArticleGener599D</IdLocation>
+<IndexLocation>^habrAnalytics.ArticleGener599I</IndexLocation>
+<StreamLocation>^habrAnalytics.ArticleGener599S</StreamLocation>
+<Data name="ArticleGeneralInfoDefaultData">
+<Value name="1">
+<Value>%%CLASSNAME</Value>
+</Value>
+<Value name="2">
+<Value>url</Value>
+</Value>
+<Value name="3">
+<Value>name</Value>
+</Value>
+<Value name="4">
+<Value>author</Value>
+</Value>
+<Value name="5">
+<Value>dateOfCreation</Value>
+</Value>
+<Value name="6">
+<Value>dateOfPublication</Value>
+</Value>
+<Value name="7">
+<Value>hubs</Value>
+</Value>
+<Value name="8">
+<Value>rating</Value>
+</Value>
+<Value name="9">
+<Value>votesPlus</Value>
+</Value>
+<Value name="10">
+<Value>votesMinus</Value>
+</Value>
+<Value name="11">
+<Value>votes</Value>
+</Value>
+<Value name="12">
+<Value>comments</Value>
+</Value>
+<Value name="13">
+<Value>favorites</Value>
+</Value>
+<Value name="14">
+<Value>views</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+</Export>

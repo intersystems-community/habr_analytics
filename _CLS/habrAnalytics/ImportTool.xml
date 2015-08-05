@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25" zv="Cache for Windows (x86-32) 2015.1 (Build 429U)" ts="2015-08-05 15:17:12">
+<Class name="habrAnalytics.ImportTool">
+<Super>%Persistent</Super>
+<TimeChanged>63769,54948.140873</TimeChanged>
+<TimeCreated>63767,56621.656063</TimeCreated>
+
+<Method name="parseCSV">
+<ClassMethod>1</ClassMethod>
+<FormalSpec>filename:%String</FormalSpec>
+<Implementation><![CDATA[
+  	set stream = ##class(%Stream.FileCharacter).%New()
+  	set stream.StreamFormatWrite = 0
+  	set it = 0
+  	
+  	set status = stream.LinkToFile(filename)
+  	if $$$ISOK(status) {
+    	do  {
+      		set str = $ZSTRIP(stream.ReadLine(, .status), "<>W")
+      		quit:$$$ISERR(status)  			
+   			  	
+   			if it > 0 {
+   				set strlist = $listfromstring($tr(str, """", ""), $Char(9))
+   				set habrId = $list(strlist, 1)
+   				
+				if (##class(ArticleGeneralInfo).%ExistsId(habrId) = 0) {  				
+   					set row = ##class(habrAnalytics.ArticleGeneralInfo).%New(.strlist)			
+				} else {
+					set row = ##class(habrAnalytics.ArticleGeneralInfo).%OpenId(habrId)
+					do row.update(.strlist)
+				}
+				
+				set st = row.%Save()
+   				do $System.Status.DisplayError(st)
+   			} 
+   			set it = it + 1           
+    	} while ('stream.AtEnd)
+  	}
+  	set stream = ""
+]]></Implementation>
+</Method>
+
+<Storage name="Default">
+<Type>%Library.CacheStorage</Type>
+<DataLocation>^habrAnalytics.ImportToolD</DataLocation>
+<DefaultData>ImportToolDefaultData</DefaultData>
+<IdLocation>^habrAnalytics.ImportToolD</IdLocation>
+<IndexLocation>^habrAnalytics.ImportToolI</IndexLocation>
+<StreamLocation>^habrAnalytics.ImportToolS</StreamLocation>
+<Data name="ImportToolDefaultData">
+<Value name="1">
+<Value>%%CLASSNAME</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+</Export>

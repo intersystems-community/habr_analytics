@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25" zv="Cache for Windows (x86-32) 2015.1 (Build 429U)" ts="2015-08-05 15:12:00">
+<Class name="User.ArticleGenInfo">
+<Description>
+1</Description>
+<ProcedureBlock>1</ProcedureBlock>
+<Super>%DeepSee.CubeDefinition</Super>
+<TimeChanged>63769,51704.084513</TimeChanged>
+<TimeCreated>63768,58609.500429</TimeCreated>
+<DependsOn>habrAnalytics.ArticleGeneralInfo</DependsOn>
+
+<Parameter name="DOMAIN"/>
+
+<XData name="Cube">
+<Description>
+Cube definition from Architect.</Description>
+<XMLNamespace>http://www.intersystems.com/deepsee</XMLNamespace>
+<Data><![CDATA[
+<cube xmlns="http://www.intersystems.com/deepsee" name="ArticleGenInfo" displayName="ArticleGenInfo" disabled="false" abstract="false" sourceClass="habrAnalytics.ArticleGeneralInfo" countMeasureName="%COUNT" bucketSize="8" bitmapChunkInMemory="false" precompute="0">
+  <dimension name="author" displayName="Автор" disabled="false" hasAll="false" allCaption="All author" allDisplayName="author" type="data" iKnowType="entity" hidden="false" showHierarchies="default">
+    <hierarchy name="H1" disabled="false">
+      <level sourceProperty="author" name="author" displayName="автор" disabled="false" list="false" useDisplayValue="true" useAsFilter="true">
+      </level>
+    </hierarchy>
+  </dimension>
+  <dimension name="habrId" displayName="Статьи" disabled="false" hasAll="false" allCaption="All habrId" allDisplayName="habrId" type="data" iKnowType="entity" hidden="false" showHierarchies="default">
+    <hierarchy name="H1" disabled="false">
+      <level sourceProperty="habrId" name="habrId" displayName="статьи" disabled="false" list="false" useDisplayValue="true" useAsFilter="true">
+        <property sourceProperty="name" name="name" displayName="статьи" disabled="false" hidden="false" isName="true" isDescription="false" isReference="false" useDisplayValue="true"></property>
+      </level>
+    </hierarchy>
+  </dimension>
+  <dimension name="hubs" displayName="Хабы" disabled="false" hasAll="false" allCaption="All hubs" allDisplayName="hubs" type="data" iKnowType="entity" hidden="false" showHierarchies="default">
+    <hierarchy name="H1" disabled="false">
+      <level sourceProperty="hubs" name="hubs" displayName="хабы" disabled="false" list="true" useDisplayValue="true" useAsFilter="true">
+      </level>
+    </hierarchy>
+  </dimension>
+  <dimension name="dateOfCreation" displayName="Дата создания" disabled="false" hasAll="false" allCaption="All dateOfCreation" allDisplayName="dateOfCreation" sourceProperty="dateOfCreation" type="time" iKnowType="entity" hidden="false" showHierarchies="default">
+    <hierarchy name="H1" disabled="false">
+      <level name="dateOfCreation" displayName="год создания" disabled="false" timeFunction="Year" list="false" useDisplayValue="true" useAsFilter="true">
+      </level>
+      <level name="dateOfCreation1" displayName="месяц создания" disabled="false" timeFunction="MonthNumber" list="false" useDisplayValue="true" useAsFilter="true">
+      </level>
+      <level name="dateOfCreation2" displayName="день создания" disabled="false" timeFunction="DayNumber" list="false" useDisplayValue="true" useAsFilter="true">
+      </level>
+    </hierarchy>
+  </dimension>
+  <dimension name="dateOfPublication" displayName="Дата публикации" disabled="false" hasAll="false" allCaption="All dateOfPublication" allDisplayName="dateOfPublication" sourceProperty="dateOfPublication" type="time" iKnowType="entity" hidden="false" showHierarchies="default">
+    <hierarchy name="H1" disabled="false">
+      <level name="dateOfPublication" displayName="Год публикации" disabled="false" timeFunction="Year" list="false" useDisplayValue="true" useAsFilter="true">
+      </level>
+      <level name="dateOfPublication1" displayName="Месяц публикации" disabled="false" timeFunction="MonthNumber" list="false" useDisplayValue="true" useAsFilter="true">
+      </level>
+      <level name="dateOfPublication2" displayName="День публикации" disabled="false" timeFunction="DayNumber" list="false" useDisplayValue="true" useAsFilter="true">
+      </level>
+    </hierarchy>
+  </dimension>
+  <measure sourceProperty="votes" name="votes" displayName="количество голосов" disabled="false" aggregate="SUM" type="integer" hidden="false" searchable="false"></measure>
+  <measure sourceProperty="views" name="views" displayName="просмотры" disabled="false" aggregate="SUM" type="integer" hidden="false" searchable="false"></measure>
+  <measure sourceProperty="rating" name="rating" displayName="рейтинг" disabled="false" aggregate="SUM" type="integer" hidden="false" searchable="false"></measure>
+  <measure sourceProperty="favorites" name="favorites" displayName="избранное" disabled="false" aggregate="SUM" type="integer" hidden="false" searchable="false"></measure>
+  <measure sourceProperty="comments" name="comments" displayName="количество комментариев " disabled="false" aggregate="SUM" type="integer" hidden="false" searchable="false"></measure>
+  <listing name="список" disabled="false" listingType="table" fieldList="author,url"></listing>
+</cube>
+]]></Data>
+</XData>
+</Class>
+</Export>
