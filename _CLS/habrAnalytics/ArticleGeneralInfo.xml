@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Export generator="Cache" version="25" zv="Cache for Windows (x86-32) 2015.1 (Build 429U)" ts="2015-08-05 15:16:43">
+<Export generator="Cache" version="25" zv="Cache for Windows (x86-32) 2015.1 (Build 429U)" ts="2015-08-06 15:27:36">
 <Class name="habrAnalytics.ArticleGeneralInfo">
 <Super>%Persistent</Super>
-<TimeChanged>63768,65233.875296</TimeChanged>
+<TimeChanged>63770,43182.885075</TimeChanged>
 <TimeCreated>63767,56485.000784</TimeCreated>
 
 <Property name="habrId">
@@ -135,7 +135,7 @@ class then this oref will be the one returned to the caller of %New method.]]></
 		set ..dateOfPublication = $zdh($tr($p(pub," "),".","/"), 4)
 	}
 	
-	//set oldParams = $LISTBUILD(..rating, ..votesPlus, ..votesMinus, ..votes, ..comments, ..favorites, ..views)
+	set oldParams = $LISTBUILD(..rating, ..votesPlus, ..votesMinus, ..votes, ..comments, ..favorites, ..views)
 	
 	set ..rating     = +$list(parameterList, 8)
 	set ..votesPlus  = +$list(parameterList, 9)
@@ -145,8 +145,8 @@ class then this oref will be the one returned to the caller of %New method.]]></
 	set ..favorites  = +$list(parameterList, 13)
 	set ..views      = +$list(parameterList, 14)
 	
-	if (##class(habrAnalytics.ArticleStatistics).%ExistsId(..habrId_"||"_$p($h, ",")) = 0) {	
-		set status = ..statistics.Insert(##class(habrAnalytics.ArticleStatistics).%New(.parameterList))
+	if (..dateOfPublication '= "" && ##class(habrAnalytics.ArticleStatistics).%ExistsId(..habrId_"||"_$p($h, ",")) = 0) {	
+		set status = ..statistics.Insert(##class(habrAnalytics.ArticleStatistics).%New(.parameterList, .oldParams))
 		Quit status
 	}
 	Quit $$$OK

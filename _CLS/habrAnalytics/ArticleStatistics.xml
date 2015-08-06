@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Export generator="Cache" version="25" zv="Cache for Windows (x86-32) 2015.1 (Build 429U)" ts="2015-08-05 15:17:00">
+<Export generator="Cache" version="25" zv="Cache for Windows (x86-32) 2015.1 (Build 429U)" ts="2015-08-06 15:27:42">
 <Class name="habrAnalytics.ArticleStatistics">
 <Super>%Persistent</Super>
-<TimeChanged>63767,66073.296527</TimeChanged>
+<TimeChanged>63770,55228.948653</TimeChanged>
 <TimeCreated>63767,56567.546951</TimeCreated>
 
 <Property name="dateOfImport">
@@ -80,14 +80,12 @@ For example, if you're going to call %New, passing 2 arguments, %OnNew's signatu
 <p>Method %OnNew(dob as %Date = "", name as %Name = "") as %Status
 If instead of returning a %Status code this returns an oref and this oref is a subclass of the current
 class then this oref will be the one returned to the caller of %New method.]]></Description>
-<FormalSpec><![CDATA[&newParams:%List]]></FormalSpec>
+<FormalSpec><![CDATA[&newParams:%List,&oldParams:%List]]></FormalSpec>
 <Private>1</Private>
 <ReturnType>%Status</ReturnType>
 <ServerOnly>1</ServerOnly>
 <Implementation><![CDATA[
 	set habrId = +$list(newParams, 1)
-	set oldParams = ..getByHabrId(habrId)
-	
 	set ..dateOfImport = $p($h, ",")
 	set ..rating     = +$list(newParams, 8)  - $list(oldParams, 1)
 	set ..votesPlus  = +$list(newParams, 9)  - $list(oldParams, 2)
@@ -97,22 +95,6 @@ class then this oref will be the one returned to the caller of %New method.]]></
 	set ..favorites  = +$list(newParams, 13) - $list(oldParams, 6)
 	set ..views      = +$list(newParams, 14) - $list(oldParams, 7)
 	Quit $$$OK
-]]></Implementation>
-</Method>
-
-<Method name="getByHabrId">
-<ClassMethod>1</ClassMethod>
-<FormalSpec>habrId:%Integer</FormalSpec>
-<ReturnType>%List</ReturnType>
-<Implementation><![CDATA[
-	&sql(declare EC cursor for
-	select SUM(rating), SUM(votesPlus), SUM(votesMinus), SUM(votes), SUM(comments), SUM(favorites), SUM(views)
-	from habrAnalytics.ArticleStatistics where article = :habrId)	
-	&sql(open EC)
-	&sql(fetch EC into rating, votesPlus, votesMinus, votes, comments, favorites, views)
-	set oldParams = $LISTBUILD(rating, votesPlus, votesMinus, votes, comments, favorites, views)
-	&sql(close EC)
-	return oldParams
 ]]></Implementation>
 </Method>
 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Export generator="Cache" version="25" zv="Cache for Windows (x86-32) 2015.1 (Build 429U)" ts="2015-08-05 15:17:12">
+<Export generator="Cache" version="25" zv="Cache for Windows (x86-32) 2015.1 (Build 429U)" ts="2015-08-06 15:28:20">
 <Class name="habrAnalytics.ImportTool">
 <Super>%Persistent</Super>
-<TimeChanged>63769,54948.140873</TimeChanged>
+<TimeChanged>63770,55690.244957</TimeChanged>
 <TimeCreated>63767,56621.656063</TimeCreated>
 
 <Method name="parseCSV">
@@ -35,6 +35,9 @@
    			} 
    			set it = it + 1           
     	} while ('stream.AtEnd)
+    	w it _ " lines have been imported.", !
+  	} else {
+  		do $System.Status.DisplayError(status)
   	}
   	set stream = ""
 ]]></Implementation>
