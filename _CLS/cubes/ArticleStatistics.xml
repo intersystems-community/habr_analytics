@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Export generator="Cache" version="25" zv="Cache for Windows (x86-32) 2015.1 (Build 429U)" ts="2015-08-05 15:11:43">
-<Class name="User.ArticleStatistics">
+<Export generator="Cache" version="25" zv="Cache for Windows (x86-32) 2015.1 (Build 429U)" ts="2015-08-06 14:08:32">
+<Class name="habraCubes.ArticleStatistics">
 <Description>
 2</Description>
 <ProcedureBlock>1</ProcedureBlock>
 <Super>%DeepSee.CubeDefinition</Super>
-<TimeChanged>63768,70573.430201</TimeChanged>
+<TimeChanged>63770,50847.35903</TimeChanged>
 <TimeCreated>63767,67353.203302</TimeCreated>
 <DependsOn>habrAnalytics.ArticleStatistics</DependsOn>
 
-<Parameter name="DOMAIN"/>
+<Parameter name="DOMAIN">
+</Parameter>
 
 <XData name="Cube">
 <Description>
@@ -66,7 +67,7 @@ Cube definition from Architect.</Description>
   <measure sourceProperty="favorites" name="favorites" displayName="избранное" disabled="false" aggregate="SUM" type="integer" hidden="false" searchable="false"></measure>
   <measure sourceProperty="votesMinus" name="votesMinus" displayName="голосов против" disabled="false" aggregate="SUM" type="integer" hidden="false" searchable="false"></measure>
   <measure sourceProperty="votesPlus" name="votesPlus" displayName="голосов за" disabled="false" aggregate="SUM" type="integer" hidden="false" searchable="false"></measure>
-  <listing name="список" disabled="false" listingType="map" fieldList="views,article-&gt;url,article-&gt;name" orderBy="(-1) * views"></listing>
+  <listing name="список" disabled="false" listingType="map" fieldList="views,article-&gt;url,article-&gt;name,article-&gt;dateOfPublication" orderBy="(-1) * views"></listing>
 </cube>
 ]]></Data>
 </XData>

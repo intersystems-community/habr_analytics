@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Export generator="Cache" version="25" zv="Cache for Windows (x86-32) 2015.1 (Build 429U)" ts="2015-08-05 15:02:12">
+<Export generator="Cache" version="25" zv="Cache for Windows (x86-32) 2015.1 (Build 429U)" ts="2015-08-06 14:02:26">
 <Document name="habrAnalytics-Authors-Votes.dashboard.DFI">
-<dashboard xmlns="http://www.intersystems.com/deepsee/library" name="Votes" folderName="habrAnalytics/Authors" title="" description="" keywords="" owner="" shared="true" public="true" locked="false" resource="" timeCreated="2015-08-04T12:16:46.64Z" createdBy="UnknownUser" category="" bookCover="" scheme="" worklistCount="0" snapTo="true" snapGrid="true" gridRows="10" gridCols="10" canResize="true" canModify="true" showTitleBar="true" companyName="" companyLogo="" companyStyle="">
-  <widget name="w1" type="pivot" subtype="pivot" subtypeClass="lineChart" title="" dataSource="habrAnalytics/votes.pivot" dataLink="" drillDownDataSource="" width="200" height="200" sidebarContent="" showSidebar="false" sidebarWidth="" maximized="false" homeRowL="0" homeColL="0" colSpanL="5" rowSpanL="10" showToolbar="true" theme="" dataColorList="">
+<dashboard xmlns="http://www.intersystems.com/deepsee/library" name="Votes" folderName="habrAnalytics/Authors" title="" description="" keywords="" owner="" shared="true" public="true" locked="false" resource="" timeCreated="2015-08-06T09:31:24.346Z" createdBy="UnknownUser" category="" bookCover="" scheme="" worklistCount="0" snapTo="true" snapGrid="true" gridRows="10" gridCols="10" canResize="true" canModify="true" showTitleBar="true" companyName="" companyLogo="" companyStyle="">
+  <widget name="w1" type="pivot" subtype="pivot" subtypeClass="lineChart" title="" dataSource="habrAnalytics/authors_votes.pivot" dataLink="" drillDownDataSource="" width="200" height="200" sidebarContent="" showSidebar="false" sidebarWidth="" maximized="false" homeRowL="0" homeColL="0" colSpanL="5" rowSpanL="8" showToolbar="true" theme="" dataColorList="">
     <control name="" action="applyFilter" target="w1,w2" targetProperty="[hubs].[H1].[hubs]" location="dashboard" type="auto" controlClass="" label="хабы" title="" value="" text="" readOnly="false" valueList="" displayList="" activeWhen=""></control>
-    <control name="" action="applyFilter" target="w1,w2" targetProperty="[dateOfPublication].[H1].[dateOfPublication]" location="dashboard" type="auto" controlClass="" label="год" title="" value="" text="" readOnly="false" valueList="" displayList="" activeWhen=""></control>
+    <control name="" action="applyFilter" target="w1,w2" targetProperty="[dateOfPublication].[H1].[dateOfPublication]" location="dashboard" type="auto" controlClass="" label="Год публикации" title="" value="" text="" readOnly="false" valueList="" displayList="" activeWhen=""></control>
   </widget>
-  <widget name="w2" type="pivot" subtype="columnChart" subtypeClass="barChart" title="" dataSource="" dataLink="w1" drillDownDataSource="" width="200" height="200" sidebarContent="" showSidebar="false" sidebarWidth="" maximized="false" homeRowL="0" homeColL="5" colSpanL="5" rowSpanL="6" showToolbar="true" theme="" dataColorList="">
+  <widget name="w2" type="pivot" subtype="columnChart" subtypeClass="barChart" title="" dataSource="" dataLink="w1" drillDownDataSource="" width="200" height="200" sidebarContent="" showSidebar="false" sidebarWidth="" maximized="false" homeRowL="0" homeColL="5" colSpanL="4" rowSpanL="4" showToolbar="true" theme="" dataColorList="">
   </widget>
 </dashboard>
 </Document></Export>
