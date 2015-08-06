@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Export generator="Cache" version="25" zv="Cache for Windows (x86-32) 2015.1 (Build 429U)" ts="2015-08-06 14:08:32">
-<Class name="habraCubes.ArticleStatistics">
+<Class name="Users.ArticleStatistics">
 <Description>
 2</Description>
 <ProcedureBlock>1</ProcedureBlock>
