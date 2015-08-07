@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Export generator="Cache" version="25" zv="Cache for Windows (x86-32) 2015.1 (Build 429U)" ts="2015-08-07 15:24:53">
-<Class name="User.ArticleGenInfo">
+<Class name="habraCubes.ArticleGenInfo">
 <Description>
 1</Description>
 <ProcedureBlock>1</ProcedureBlock>
