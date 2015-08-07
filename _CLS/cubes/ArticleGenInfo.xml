@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Export generator="Cache" version="25" zv="Cache for Windows (x86-32) 2015.1 (Build 429U)" ts="2015-08-06 14:08:13">
-<Class name="habraCubes.ArticleGenInfo">
+<Export generator="Cache" version="25" zv="Cache for Windows (x86-32) 2015.1 (Build 429U)" ts="2015-08-07 15:24:53">
+<Class name="User.ArticleGenInfo">
 <Description>
 1</Description>
 <ProcedureBlock>1</ProcedureBlock>
 <Super>%DeepSee.CubeDefinition</Super>
-<TimeChanged>63770,50181.315134</TimeChanged>
+<TimeChanged>63771,55077.529687</TimeChanged>
 <TimeCreated>63768,58609.500429</TimeCreated>
 <DependsOn>habrAnalytics.ArticleGeneralInfo</DependsOn>
 
@@ -62,12 +62,23 @@ Cube definition from Architect.</Description>
       </level>
     </hierarchy>
   </dimension>
+  <dimension name="author_views" displayName="Автор" description="автор" disabled="false" hasAll="false" allCaption="All author1" allDisplayName="author1" type="data" iKnowType="entity" hidden="false" showHierarchies="default">
+    <hierarchy name="H1" disabled="false">
+      <level sourceProperty="author" name="author" displayName="автор" disabled="false" list="false" useDisplayValue="true" useAsFilter="true">
+      </level>
+      <level sourceProperty="habrId" name="habrId" displayName="статьи" disabled="false" list="false" useDisplayValue="true" useAsFilter="true">
+        <property sourceExpression="$e(%source.name,1,25)" name="name" displayName="статьи" disabled="false" hidden="false" isName="true" isDescription="false" isReference="false" useDisplayValue="true"></property>
+      </level>
+    </hierarchy>
+  </dimension>
   <measure sourceProperty="votes" name="votes" displayName="голоса" disabled="false" aggregate="SUM" type="integer" hidden="false" searchable="false"></measure>
   <measure sourceProperty="views" name="views" displayName="просмотры" disabled="false" aggregate="SUM" type="integer" hidden="false" searchable="false"></measure>
   <measure sourceProperty="rating" name="rating" displayName="рейтинг" disabled="false" aggregate="SUM" type="integer" hidden="false" searchable="false"></measure>
   <measure sourceProperty="favorites" name="favorites" displayName="избранное" disabled="false" aggregate="SUM" type="integer" hidden="false" searchable="false"></measure>
   <measure sourceProperty="comments" name="comments" displayName="комментарии " disabled="false" aggregate="SUM" type="integer" hidden="false" searchable="false"></measure>
   <measure sourceProperty="habrId" name="habrId" displayName="количество статей" disabled="false" aggregate="COUNT" type="integer" hidden="false" searchable="false"></measure>
+  <measure sourceExpression="%source.views / 1000" name="views1" displayName="просмотры (тыс.)" disabled="false" aggregate="SUM" type="number" hidden="false" searchable="false"></measure>
+  <calculatedMember name="тысяч просмотров на статью" disabled="false" dimension="Measures" valueExpression="[Measures].views1 / [Measures].habrId" hidden="false"></calculatedMember>
   <calculatedMember name="среднее число просмотров на статью" disabled="false" dimension="Measures" valueExpression="[Measures].views / [Measures].habrId" hidden="false"></calculatedMember>
   <calculatedMember name="среднее число комментариев на статью" disabled="false" dimension="Measures" valueExpression="[Measures].comments / [Measures].habrId" hidden="false"></calculatedMember>
   <calculatedMember name="средний рейтинг на статью" disabled="false" dimension="Measures" valueExpression="[Measures].rating / [Measures].habrId" hidden="false"></calculatedMember>
