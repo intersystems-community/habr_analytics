@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25" zv="Cache for UNIX (SUSE Linux Enterprise Server for x86-64) 2015.1 (Build 429U)" ts="2015-08-26 10:11:59">
+<Document name="Authors.dashboard.DFI">
+<dashboard xmlns="http://www.intersystems.com/deepsee/library" name="Authors" folderName="" title="Самые читаемые авторы" description="" keywords="" owner="" shared="true" public="true" locked="false" resource="" timeCreated="2015-08-24T20:22:27.908Z" createdBy="Admin" category="" bookCover="" scheme="" worklistCount="0" snapTo="true" snapGrid="true" gridRows="10" gridCols="10" canResize="true" canModify="true" showTitleBar="true" companyName="" companyLogo="" companyStyle="">
+  <widget name="Виджет1" type="pivot" subtype="columnChartStacked" subtypeClass="barChart" title="Топ 5 по просмотрам" dataSource="Authors_Views_Top5.pivot" dataLink="" drillDownDataSource="" width="200" height="200" sidebarContent="" showSidebar="false" sidebarWidth="" maximized="false" homeRowL="0" homeColL="0" colSpanL="4" rowSpanL="10" showToolbar="true" theme="" dataColorList="">
+    <control name="" action="applyFilter" target="*" targetProperty="[dateOfPublication].[H1].[dateOfPublication]" location="widget" type="auto" controlClass="" label="Год публикации" title="" value="&amp;[NOW]" text="" readOnly="false" valueList="" displayList="" activeWhen=""></control>
+  </widget>
+  <widget name="Виджет2" type="pivot" subtype="pivot" subtypeClass="lineChart" title="Статистика авторов" dataSource="habrAnalytics/authorStat.pivot" dataLink="" drillDownDataSource="" width="200" height="200" sidebarContent="" showSidebar="false" sidebarWidth="" maximized="false" homeRowL="0" homeColL="4" colSpanL="6" rowSpanL="6" showToolbar="true" theme="" dataColorList="">
+  </widget>
+  <widget name="Виджет3" type="pivot" subtype="pivot" subtypeClass="lineChart" title="Статистика авторов (средние величины)" dataSource="habrAnalytics/authorStat_avg.pivot" dataLink="" drillDownDataSource="" width="200" height="200" sidebarContent="" showSidebar="false" sidebarWidth="" maximized="false" homeRowL="6" homeColL="4" colSpanL="6" rowSpanL="4" showToolbar="true" theme="" dataColorList="">
+  </widget>
+</dashboard>
+</Document></Export>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25" zv="Cache for UNIX (SUSE Linux Enterprise Server for x86-64) 2015.1 (Build 429U)" ts="2015-08-26 10:11:51">
+<Document name="Articles.dashboard.DFI">
+<dashboard xmlns="http://www.intersystems.com/deepsee/library" name="Articles" folderName="" title="Самые читаемые статьи" description="" keywords="" owner="" shared="true" public="true" locked="false" resource="" timeCreated="2015-08-24T19:24:56.24Z" createdBy="Admin" category="" bookCover="" scheme="" worklistCount="0" snapTo="true" snapGrid="true" gridRows="10" gridCols="10" canResize="true" canModify="true" showTitleBar="true" companyName="" companyLogo="" companyStyle="">
+  <widget name="Виджет1" type="meter" subtype="textMeter" subtypeClass="" title="" dataSource="ArticleCount.pivot" dataLink="" drillDownDataSource="" width="200" height="200" sidebarContent="" showSidebar="false" sidebarWidth="" maximized="false" homeRowL="0" homeColL="0" colSpanL="4" rowSpanL="6" showToolbar="true" theme="" dataColorList="">
+    <control name="" action="applyFilter" target="*" targetProperty="[dateOfPublication].[H1].[dateOfPublication]" location="widget" type="auto" controlClass="" label="Год публикации" title="" value="&amp;[NOW]" text="" readOnly="false" valueList="" displayList="" activeWhen=""></control>
+    <dataProperty name="" label="$auto" width="" align="" subtype="textMeter" style="" display="value" format="" showAs="value" valueColumn="false" summary="" summaryValue="" dataValue="количество статей" targetValue="" thresholdLower="" thresholdUpper="" rangeLower="" rangeUpper="" baseValue="" override="{height:86,width:345,_type:&apos;textMeter&apos;}"></dataProperty>
+  </widget>
+  <widget name="W2" type="pivot" subtype="barChart" subtypeClass="barChart" title="Топ 5 статей по просмотрам" dataSource="habrAnalytics/articleStat_2.pivot" dataLink="" drillDownDataSource="" width="200" height="200" sidebarContent="" showSidebar="false" sidebarWidth="" maximized="false" homeRowL="0" homeColL="4" colSpanL="5" rowSpanL="6" showToolbar="true" theme="" dataColorList="">
+    <control name="" action="applyFilter" target="w2,w3" targetProperty="[author].[H1].[author]" location="widget" type="auto" controlClass="" label="автор" title="" value="" text="" readOnly="false" valueList="" displayList="" activeWhen=""></control>
+    <control name="" action="applyFilter" target="w2,w3" targetProperty="[hubs].[H1].[hubs]" location="widget" type="auto" controlClass="" label="хабы" title="" value="" text="" readOnly="false" valueList="" displayList="" activeWhen=""></control>
+  </widget>
+  <widget name="W3" type="pivot" subtype="pivot" subtypeClass="lineChart" title="Статистика статей" dataSource="habrAnalytics/articleStat.pivot" dataLink="" drillDownDataSource="" width="200" height="200" sidebarContent="" showSidebar="false" sidebarWidth="" maximized="false" homeRowL="6" homeColL="0" colSpanL="9" rowSpanL="4" showToolbar="true" theme="" dataColorList="">
+  </widget>
+</dashboard>
+</Document></Export>

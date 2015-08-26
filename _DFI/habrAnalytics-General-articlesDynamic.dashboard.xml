@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Export generator="Cache" version="25" zv="Cache for Windows (x86-32) 2015.1 (Build 429U)" ts="2015-08-07 15:22:21">
+<Export generator="Cache" version="25" zv="Cache for UNIX (SUSE Linux Enterprise Server for x86-64) 2015.1 (Build 429U)" ts="2015-08-26 10:10:10">
 <Document name="habrAnalytics-General-articlesDynamic.dashboard.DFI">
 <dashboard xmlns="http://www.intersystems.com/deepsee/library" name="articlesDynamic" folderName="habrAnalytics/General" title="" description="" keywords="" owner="" shared="true" public="true" locked="false" resource="" timeCreated="2015-08-06T09:58:16.445Z" createdBy="UnknownUser" category="" bookCover="" scheme="" worklistCount="0" snapTo="true" snapGrid="true" gridRows="10" gridCols="10" canResize="true" canModify="true" showTitleBar="true" companyName="" companyLogo="" companyStyle="">
   <widget name="w1" type="pivot" subtype="pivot" subtypeClass="lineChart" title="" dataSource="habrAnalytics/articlesDynamic.pivot" dataLink="" drillDownDataSource="" width="200" height="200" sidebarContent="" showSidebar="false" sidebarWidth="" maximized="false" homeRowL="0" homeColL="0" colSpanL="4" rowSpanL="4" showToolbar="true" theme="" dataColorList="">
