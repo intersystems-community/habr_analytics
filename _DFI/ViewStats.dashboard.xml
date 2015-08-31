@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25" zv="Cache for UNIX (SUSE Linux Enterprise Server for x86-64) 2015.1 (Build 429U)" ts="2015-08-26 10:08:26">
+<Document name="ViewStats.dashboard.DFI">
+<dashboard xmlns="http://www.intersystems.com/deepsee/library" name="ViewStats" folderName="" title="Просмотры статей" description="" keywords="" owner="" shared="true" public="true" locked="false" resource="" timeCreated="2015-08-24T19:54:59.691Z" createdBy="Admin" category="" bookCover="" scheme="" worklistCount="0" snapTo="true" snapGrid="true" gridRows="10" gridCols="10" canResize="true" canModify="true" showTitleBar="true" companyName="" companyLogo="" companyStyle="">
+  <widget name="w1" type="meter" subtype="speedometer" subtypeClass="" title="Количество просмотров" dataSource="ViewCount.pivot" dataLink="" drillDownDataSource="" width="200" height="200" sidebarContent="" showSidebar="false" sidebarWidth="" maximized="false" homeRowL="0" homeColL="0" colSpanL="4" rowSpanL="4" showToolbar="true" theme="" dataColorList="">
+    <control name="" action="applyFilter" target="w1,w2" targetProperty="[dateOfPublication].[H1].[dateOfPublication]" location="widget" type="auto" controlClass="" label="Год публикации" title="" value="&amp;[NOW]" text="" readOnly="false" valueList="" displayList="" activeWhen=""></control>
+    <control name="" action="applyFilter" target="w1,w2" targetProperty="[author].[H1].[author]" location="widget" type="auto" controlClass="" label="автор" title="" value="" text="" readOnly="false" valueList="" displayList="" activeWhen=""></control>
+    <dataProperty name="" label="$auto" width="" align="" subtype="speedometer" style="" display="value" format="" showAs="value" valueColumn="false" summary="" summaryValue="" dataValue="просмотры" targetValue="" thresholdLower="" thresholdUpper="" rangeLower="" rangeUpper="" baseValue="" override="{height:164,width:164,_type:&apos;speedometer&apos;}"></dataProperty>
+  </widget>
+  <widget name="w2" type="pivot" subtype="pieChart3D" subtypeClass="pieChart" title="Просмотры по хабам" dataSource="habrAnalytics/hubs.pivot" dataLink="" drillDownDataSource="" width="200" height="200" sidebarContent="" showSidebar="false" sidebarWidth="" maximized="false" homeRowL="0" homeColL="4" colSpanL="6" rowSpanL="6" showToolbar="true" theme="" dataColorList="">
+  </widget>
+  <widget name="w3" type="pivot" subtype="timeChart" subtypeClass="comboChart" title="Просмотры по месяцам за все время" dataSource="habrAnalytics/ArticlesByMonths.pivot" dataLink="" drillDownDataSource="" width="200" height="200" sidebarContent="" showSidebar="false" sidebarWidth="" maximized="false" homeRowL="6" homeColL="0" colSpanL="10" rowSpanL="4" showToolbar="true" theme="" dataColorList="">
+  </widget>
+</dashboard>
+</Document></Export>

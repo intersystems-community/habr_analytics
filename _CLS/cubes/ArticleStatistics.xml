@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25" zv="Cache for Windows (x86-32) 2015.1 (Build 429U)" ts="2015-08-06 14:08:32">
+<Class name="habraCubes.ArticleStatistics">
+<Description>
+2</Description>
+<ProcedureBlock>1</ProcedureBlock>
+<Super>%DeepSee.CubeDefinition</Super>
+<TimeChanged>63770,50847.35903</TimeChanged>
+<TimeCreated>63767,67353.203302</TimeCreated>
+<DependsOn>habrAnalytics.ArticleStatistics</DependsOn>
+
+<Parameter name="DOMAIN">
+</Parameter>
+
+<XData name="Cube">
+<Description>
+Cube definition from Architect.</Description>
+<XMLNamespace>http://www.intersystems.com/deepsee</XMLNamespace>
+<Data><![CDATA[
+<cube xmlns="http://www.intersystems.com/deepsee" name="ArticleStatistics" displayName="ArticleStatistics" disabled="false" abstract="false" sourceClass="habrAnalytics.ArticleStatistics" countMeasureName="%COUNT" bucketSize="8" bitmapChunkInMemory="false" precompute="0">
+  <dimension name="author" displayName="Автор" disabled="false" hasAll="false" allCaption="All author" allDisplayName="author" type="data" iKnowType="entity" hidden="false" showHierarchies="default">
+    <hierarchy name="H1" disabled="false">
+      <level sourceProperty="article.author" name="author" displayName="автор" disabled="false" list="false" useDisplayValue="true" useAsFilter="true">
+      </level>
+      <level sourceProperty="article.habrId" name="habrId" displayName="название статьи" disabled="false" list="false" useDisplayValue="true" useAsFilter="true">
+        <property sourceExpression="$e(%source.article.name,1,25)" name="name" displayName="название статьи" disabled="false" hidden="false" isName="true" isDescription="false" isReference="false" useDisplayValue="true"></property>
+      </level>
+    </hierarchy>
+  </dimension>
+  <dimension name="hubs" displayName="Хабы" disabled="false" hasAll="false" allCaption="All hubs" allDisplayName="hubs" type="data" iKnowType="entity" hidden="false" showHierarchies="default">
+    <hierarchy name="H1" disabled="false">
+      <level sourceProperty="article.hubs" name="hubs" displayName="хабы" disabled="false" list="true" useDisplayValue="true" useAsFilter="true">
+      </level>
+    </hierarchy>
+  </dimension>
+  <dimension name="dateOfPublication" displayName="Дата публикации" disabled="false" hasAll="false" allCaption="All dateOfPublication" allDisplayName="dateOfPublication" sourceProperty="article.dateOfPublication" type="time" iKnowType="entity" hidden="false" showHierarchies="default">
+    <hierarchy name="H1" disabled="false">
+      <level name="dateOfPublication" displayName="год" disabled="false" timeFunction="Year" list="false" useDisplayValue="true" useAsFilter="true">
+      </level>
+      <level name="dateOfPublication1" displayName="месяц" disabled="false" timeFunction="MonthNumber" list="false" useDisplayValue="true" useAsFilter="true">
+      </level>
+      <level name="dateOfPublication2" displayName="день" disabled="false" timeFunction="DayNumber" list="false" useDisplayValue="true" useAsFilter="true">
+      </level>
+    </hierarchy>
+  </dimension>
+  <dimension name="dateOfImport" displayName="Дата измерения показателей" disabled="false" hasAll="false" allCaption="All dateOfImport" allDisplayName="dateOfImport" sourceProperty="dateOfImport" type="time" iKnowType="entity" hidden="false" showHierarchies="default">
+    <hierarchy name="H1" disabled="false">
+      <level name="dateOfImport" displayName="год" disabled="false" timeFunction="Year" list="false" useDisplayValue="true" useAsFilter="true">
+      </level>
+      <level name="dateOfImport1" displayName="месяц" disabled="false" timeFunction="MonthNumber" list="false" useDisplayValue="true" useAsFilter="true">
+      </level>
+      <level name="dateOfImport2" displayName="день" disabled="false" timeFunction="DayNumber" list="false" useDisplayValue="true" useAsFilter="true">
+      </level>
+    </hierarchy>
+  </dimension>
+  <dimension name="habrId" displayName="Название статьи" disabled="false" hasAll="false" allCaption="All habrId" allDisplayName="habrId" type="data" hidden="false" showHierarchies="default">
+    <hierarchy name="H1" displayName="Название статьи" disabled="false">
+      <level sourceProperty="article.habrId" name="habrId" displayName="название статьи" disabled="false" list="false" useDisplayValue="true" useAsFilter="true">
+        <property sourceExpression="$e(%source.article.name,1,25)" name="name" displayName="название статьи" disabled="false" hidden="false" isName="true" isDescription="false" isReference="false" useDisplayValue="true"></property>
+      </level>
+    </hierarchy>
+  </dimension>
+  <measure sourceProperty="views" name="views" displayName="количество просмотров" disabled="false" aggregate="SUM" type="integer" hidden="false" searchable="false"></measure>
+  <measure sourceProperty="rating" name="rating" displayName="рейтинг" disabled="false" aggregate="SUM" type="integer" hidden="false" searchable="false"></measure>
+  <measure sourceProperty="votes" name="votes" displayName="количество голосов" disabled="false" aggregate="SUM" type="integer" hidden="false" searchable="false"></measure>
+  <measure sourceProperty="comments" name="comments" displayName="количество комментариев" disabled="false" aggregate="SUM" type="integer" hidden="false" searchable="false"></measure>
+  <measure sourceProperty="favorites" name="favorites" displayName="избранное" disabled="false" aggregate="SUM" type="integer" hidden="false" searchable="false"></measure>
+  <measure sourceProperty="votesMinus" name="votesMinus" displayName="голосов против" disabled="false" aggregate="SUM" type="integer" hidden="false" searchable="false"></measure>
+  <measure sourceProperty="votesPlus" name="votesPlus" displayName="голосов за" disabled="false" aggregate="SUM" type="integer" hidden="false" searchable="false"></measure>
+  <listing name="список" disabled="false" listingType="map" fieldList="views,article-&gt;url,article-&gt;name,article-&gt;dateOfPublication" orderBy="(-1) * views"></listing>
+</cube>
+]]></Data>
+</XData>
+</Class>
+</Export>
